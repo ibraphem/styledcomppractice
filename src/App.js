@@ -1,23 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import { Container } from "./components/styles/Container.styled";
+import { ThemeProvider } from "styled-components";
+import GlobalStyles from "./components/styles/Global.styled";
+import content from "../src/content";
+import Card from "./components/Card";
+import Footer from "./components/Footer";
+import NewUser from "./components/UserList";
+import NewTodos from "./TodoList";
+
+/*import Header from "./components/reduxProj/Header";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ProductListing from "./components/reduxProj/ProductListing";
+import ProductDetails from "./components/reduxProj/ProductDetails";
+import "./App.css"; */
+
+const theme = {
+  colors: {
+    header: "#ebfbff",
+    body: "#fff",
+    footer: "#033",
+  },
+  mobile: "768px",
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/*   <Header />
+      <Router>
+        <Routes>
+          <Route path="/" element={<ProductListing />} />
+          <Route path="/product/:productId" element={<ProductDetails />} />
+          <Route>404 Not Found</Route>
+        </Routes>
+      </Router> */}
+
+      <ThemeProvider theme={theme}>
+        <>
+          <GlobalStyles />
+          <Header />
+          <Container>
+            {content.map((item, index) => (
+              <Card key={index} item={item} />
+            ))}
+          </Container>
+          <Footer />
+        </>
+      </ThemeProvider>
+
+      {/* <NewUser />
+      <NewTodos /> */}
     </div>
   );
 }
